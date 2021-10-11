@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   json_annotation:
   dio:
-  dio_http_cache:
+ 
   pretty_dio_logger:
   bloc:
   flutter_bloc:

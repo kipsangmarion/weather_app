@@ -2,19 +2,11 @@ import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'api_paths.dart';
 
-late DioCacheManager _dioCacheManager;
 Dio createDio() {
-  _dioCacheManager = DioCacheManager(CacheConfig(
-      baseUrl: ApiPaths.baseURL,
-      defaultMaxAge: Duration(days: 7),
-      defaultRequestMethod: "POST",
-      databaseName: "mrion_cache"));
-
   Dio dio = Dio(BaseOptions(
     connectTimeout: 70000,
     receiveTimeout: 70000,
@@ -30,12 +22,7 @@ Dio createDio() {
         compact: true,
         maxWidth: 90),
   );
-  dio.interceptors.add(DioCacheManager(CacheConfig(
-          baseUrl: ApiPaths.baseURL,
-          defaultMaxAge: Duration(days: 7),
-          defaultRequestMethod: "POST",
-          databaseName: "mrion"))
-      .interceptor);
+
   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
       (HttpClient client) {
     client.badCertificateCallback =
@@ -43,7 +30,6 @@ Dio createDio() {
       final isValidHost = host == ApiPaths.baseURL;
       return isValidHost;
     };
-    dio.interceptors.add(_dioCacheManager.interceptor);
 
     return client;
   };

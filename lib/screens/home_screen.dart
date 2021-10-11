@@ -95,7 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Center(
           child: Column(
         children: [
-          Text(wetherM!.coord!.lat.toString()),
+          Text(wetherM!.name.toString()),
+          Text("Coord " +
+              wetherM.coord!.lat.toString() +
+              wetherM.coord!.lat.toString()),
+          Text(wetherM.sys!.country.toString()),
         ],
       )),
     );
