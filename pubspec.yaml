@@ -38,6 +38,10 @@ dependencies:
   dio:
   dio_http_cache:
   pretty_dio_logger:
+  bloc:
+  flutter_bloc:
+  equatable:
+
 
 dev_dependencies:
   flutter_test:

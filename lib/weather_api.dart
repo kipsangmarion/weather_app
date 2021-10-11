@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'dio_helper.dart';
 import 'models/wether_m.dart';
 
+var weatherApi = WeatherApi();
+
 class WeatherApi {
   Future<WetherM?> getCityWeather({String? appId, String? query}) async {
     Response response = await dioHelper.get("?q=$query&appid=$appId");
